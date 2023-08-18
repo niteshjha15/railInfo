@@ -83,6 +83,7 @@ function TrainTimeLine({ trainData }) {
               gap: "1rem",
               alignItems: "center",
             }}
+            key={station?.station_name}
           >
             <FiberManualRecordIcon className="text-green-600" />
             <Accordion
@@ -104,7 +105,7 @@ function TrainTimeLine({ trainData }) {
                   {station?.non_stops?.map(
                     (nonStops, idx) =>
                       nonStops?.station_name && (
-                        <TimelineItem>
+                        <TimelineItem key={nonStops?.station_name}>
                           <TimelineSeparator>
                             <TimelineDot sx={{ backgroundColor: "green" }} />
                             {idx !== station?.non_stops?.length - 1 && <TimelineConnector sx={{ backgroundColor: "green" }} />}
@@ -152,8 +153,8 @@ function TrainTimeLine({ trainData }) {
               Current Status
             </Typography>
             {trainData?.current_location_info?.length > 0 &&
-              trainData?.current_location_info?.map((status) => (
-                <section className="flex gap-3">
+              trainData?.current_location_info?.map((status,idx) => (
+                <section key={idx} className="flex gap-3">
                   {statusIcon(status?.type)}
                   <p>{status?.readable_message}</p>
                 </section>
@@ -179,6 +180,7 @@ function TrainTimeLine({ trainData }) {
               gap: "1rem",
               alignItems: "center",
             }}
+            key={station?.station_name}
           >
             <FiberManualRecordIcon className="text-orange-600" />
             <Accordion
@@ -200,7 +202,7 @@ function TrainTimeLine({ trainData }) {
                 {station?.non_stops?.map(
                   (nonStops,idx) =>
                     nonStops?.station_name && (
-                      <TimelineItem>
+                      <TimelineItem key={nonStops?.station_name}>
                         <TimelineSeparator>
                           <TimelineDot sx={{ backgroundColor: "orange" }} />
                           {idx !== station?.non_stops?.length - 1 && <TimelineConnector sx={{ backgroundColor: "orange" }} />}
