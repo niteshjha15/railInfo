@@ -22,6 +22,7 @@ function Menu() {
         <VillaIcon
           sx={{
             fontSize: "5rem",
+            color:"#FF8126"
           }}
         />
       ),
@@ -33,6 +34,7 @@ function Menu() {
         <TrainOutlined
           sx={{
             fontSize: "5rem",
+            color:"#FF8126"
           }}
         />
       ),
@@ -44,6 +46,7 @@ function Menu() {
         <CompareArrowsIcon
           sx={{
             fontSize: "5rem",
+            color:"#FF8126"
           }}
         />
       ),
@@ -55,6 +58,7 @@ function Menu() {
         <HistoryToggleOffIcon
           sx={{
             fontSize: "5rem",
+            color:"#FF8126"
           }}
         />
       ),
@@ -66,6 +70,7 @@ function Menu() {
         <NoteIcon
           sx={{
             fontSize: "5rem",
+            color:"#FF8126"
           }}
         />
       ),
@@ -77,6 +82,7 @@ function Menu() {
         <LiveTvIcon
           sx={{
             fontSize: "5rem",
+            color:"#FF8126"
           }}
         />
       ),
@@ -88,6 +94,7 @@ function Menu() {
         <AirlineSeatReclineExtraIcon
           sx={{
             fontSize: "5rem",
+            color:"#FF8126"
           }}
         />
       ),
@@ -99,6 +106,7 @@ function Menu() {
         <AirlineSeatFlatIcon
           sx={{
             fontSize: "5rem",
+            color:"#FF8126"
           }}
         />
       ),
@@ -110,6 +118,7 @@ function Menu() {
         <MoneyIcon
           sx={{
             fontSize: "5rem",
+            color:"#FF8126"
           }}
         />
       ),

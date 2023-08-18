@@ -1,3 +1,4 @@
+"use client"
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -10,8 +11,23 @@ import { Box, Card, CardContent, Divider } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import TrainInfoCard from "./TrainInfoCard";
 import DirectionsRailwayIcon from "@mui/icons-material/DirectionsRailway";
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineDot from '@mui/lab/TimelineDot';
+import style from "./trainStatus.module.css"
+import { useEffect, useRef } from "react";
 
 function TrainTimeLine({ trainData }) {
+
+  const currentCard = useRef()
+
+  useEffect(() => {
+    currentCard?.current?.scrollIntoView({ behavior: 'smooth' });
+  },[])
+
   const statusIcon = (type) => {
     switch (type) {
       case 1:
@@ -72,7 +88,8 @@ function TrainTimeLine({ trainData }) {
             <Accordion
               sx={{
                 width: "100%",
-                marginBottom: "5px",
+                marginBottom: "10px",
+                marginTop: "0.8rem"
               }}
             >
               <AccordionSummary
@@ -83,14 +100,20 @@ function TrainTimeLine({ trainData }) {
                 <Typography>{station?.station_name}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                {station?.non_stops?.map(
-                  (nonStops) =>
-                    nonStops?.station_name && (
-                      <section>
-                        <p className="text-xs py-4">{nonStops?.station_name}</p>
-                      </section>
-                    )
-                )}
+                <Timeline className={style.timelineWrap}>
+                  {station?.non_stops?.map(
+                    (nonStops, idx) =>
+                      nonStops?.station_name && (
+                        <TimelineItem>
+                          <TimelineSeparator>
+                            <TimelineDot sx={{ backgroundColor: "green" }} />
+                            {idx !== station?.non_stops?.length - 1 && <TimelineConnector sx={{ backgroundColor: "green" }} />}
+                          </TimelineSeparator>
+                          <TimelineContent sx={{ fontSize: "12px" }}>{nonStops?.station_name}</TimelineContent>
+                        </TimelineItem>
+                      )
+                  )}
+                </Timeline>
               </AccordionDetails>
             </Accordion>
           </Box>
@@ -101,6 +124,7 @@ function TrainTimeLine({ trainData }) {
           gap: "1rem",
           alignItems: "center",
         }}
+        ref={currentCard}
       >
         <DirectionsRailwayIcon
           sx={{
@@ -161,6 +185,7 @@ function TrainTimeLine({ trainData }) {
               sx={{
                 width: "100%",
                 marginBottom: "5px",
+                marginTop: "0.8rem"
               }}
             >
               <AccordionSummary
@@ -168,17 +193,23 @@ function TrainTimeLine({ trainData }) {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography>{station?.station_name}</Typography>
+                {station?.station_name && <Typography>{station?.station_name || "N/A"}</Typography>}
               </AccordionSummary>
               <AccordionDetails>
+                <Timeline className={style.timelineWrap}>
                 {station?.non_stops?.map(
-                  (nonStops) =>
+                  (nonStops,idx) =>
                     nonStops?.station_name && (
-                      <section>
-                        <p className="text-xs py-4">{nonStops?.station_name}</p>
-                      </section>
+                      <TimelineItem>
+                        <TimelineSeparator>
+                          <TimelineDot sx={{ backgroundColor: "orange" }} />
+                          {idx !== station?.non_stops?.length - 1 && <TimelineConnector sx={{ backgroundColor: "orange" }} />}
+                        </TimelineSeparator>
+                        <TimelineContent sx={{ fontSize: "12px" }}>{nonStops?.station_name}</TimelineContent>
+                      </TimelineItem>
                     )
                 )}
+                </Timeline>
               </AccordionDetails>
             </Accordion>
           </Box>

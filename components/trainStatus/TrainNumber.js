@@ -71,9 +71,9 @@ function TrainNumber() {
         <section>
           {trainData && trainData?.at_src ? (
             <AtSource trainData={trainData} />
-          ) : (
+          ) : trainData && !trainData?.at_src ? (
             <TrainTimeLine trainData={trainData} />
-          )}
+          ) : null}
         </section>
       </section>
     </div>

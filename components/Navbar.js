@@ -5,7 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 function Navbar() {
   return (
-    <nav className="flex items-center justify-between h-16 bg-slate-400">
+    <nav className="flex items-center justify-between h-25 bg-white">
       <div className="flex items-center  gap-5">
         <TrainIcon
           sx={{
@@ -13,7 +13,7 @@ function Navbar() {
             cursor: "pointer",
           }}
         />
-        <p className="font-medium">Rail Info</p>
+        <p className="font-lg">Rail Info</p>
       </div>
       <div className="flex p-5">
         <MenuIcon
