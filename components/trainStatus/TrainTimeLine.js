@@ -26,7 +26,7 @@ function TrainTimeLine({ trainData }) {
 
   useEffect(() => {
     currentCard?.current?.scrollIntoView({ behavior: 'smooth' });
-  },[])
+  }, [])
 
   const statusIcon = (type) => {
     switch (type) {
@@ -85,7 +85,9 @@ function TrainTimeLine({ trainData }) {
             }}
             key={station?.station_name}
           >
-            <FiberManualRecordIcon className="text-green-600" />
+            <section className="flex flex-col">
+              <span className="whitespace-nowrap">{station?.distance_from_source} km</span>
+            </section>
             <Accordion
               sx={{
                 width: "100%",
@@ -97,8 +99,21 @@ function TrainTimeLine({ trainData }) {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
+                sx={{
+                  "& .MuiAccordionSummary-content": {
+                     flexDirection:"column"
+                  }
+                }}
               >
-                <Typography>{station?.station_name}</Typography>
+                <Typography>
+                <FiberManualRecordIcon className="text-green-600" />
+                  {station?.station_name} 
+                </Typography>
+                <section className="flex justify-between">
+                <strong>Arv</strong>: <span className="pr-4">{station?.eta}</span>
+
+                <strong>Dept</strong>:<span>{station?.etd}</span>
+                </section>
               </AccordionSummary>
               <AccordionDetails>
                 <Timeline className={style.timelineWrap}>
@@ -110,7 +125,9 @@ function TrainTimeLine({ trainData }) {
                             <TimelineDot sx={{ backgroundColor: "green" }} />
                             {idx !== station?.non_stops?.length - 1 && <TimelineConnector sx={{ backgroundColor: "green" }} />}
                           </TimelineSeparator>
-                          <TimelineContent sx={{ fontSize: "12px" }}>{nonStops?.station_name}</TimelineContent>
+                          <TimelineContent sx={{ fontSize: "12px" }}>
+                            {nonStops?.station_name}
+                          </TimelineContent>
                         </TimelineItem>
                       )
                   )}
@@ -153,7 +170,7 @@ function TrainTimeLine({ trainData }) {
               Current Status
             </Typography>
             {trainData?.current_location_info?.length > 0 &&
-              trainData?.current_location_info?.map((status,idx) => (
+              trainData?.current_location_info?.map((status, idx) => (
                 <section key={idx} className="flex gap-3">
                   {statusIcon(status?.type)}
                   <p>{status?.readable_message}</p>
@@ -182,8 +199,12 @@ function TrainTimeLine({ trainData }) {
             }}
             key={station?.station_name}
           >
-            <FiberManualRecordIcon className="text-orange-600" />
-            <Accordion
+            {station?.station_name && 
+            <section className="flex flex-col">
+              {station?.distance_from_source && <span className="whitespace-nowrap">{station?.distance_from_source} km</span>}
+            </section>
+           }
+            {station?.station_name && <Accordion
               sx={{
                 width: "100%",
                 marginBottom: "5px",
@@ -194,26 +215,35 @@ function TrainTimeLine({ trainData }) {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
+                sx={{
+                  "& .MuiAccordionSummary-content": {
+                     flexDirection:"column"
+                  }
+                }}
               >
-                {station?.station_name && <Typography>{station?.station_name || "N/A"}</Typography>}
+                <Typography> <FiberManualRecordIcon className="text-orange-600" /> {station?.station_name || "N/A"}</Typography>
+                <section className="flex justify-between">
+                <strong>Arv</strong>: <span className="pr-4">{station?.eta}</span>
+                <strong>Dept</strong>:<span>{station?.etd}</span>
+                </section>
               </AccordionSummary>
               <AccordionDetails>
                 <Timeline className={style.timelineWrap}>
-                {station?.non_stops?.map(
-                  (nonStops,idx) =>
-                    nonStops?.station_name && (
-                      <TimelineItem key={nonStops?.station_name}>
-                        <TimelineSeparator>
-                          <TimelineDot sx={{ backgroundColor: "orange" }} />
-                          {idx !== station?.non_stops?.length - 1 && <TimelineConnector sx={{ backgroundColor: "orange" }} />}
-                        </TimelineSeparator>
-                        <TimelineContent sx={{ fontSize: "12px" }}>{nonStops?.station_name}</TimelineContent>
-                      </TimelineItem>
-                    )
-                )}
+                  {station?.non_stops?.map(
+                    (nonStops, idx) =>
+                      nonStops?.station_name && (
+                        <TimelineItem key={nonStops?.station_name}>
+                          <TimelineSeparator>
+                            <TimelineDot sx={{ backgroundColor: "orange" }} />
+                            {idx !== station?.non_stops?.length - 1 && <TimelineConnector sx={{ backgroundColor: "orange" }} />}
+                          </TimelineSeparator>
+                          <TimelineContent sx={{ fontSize: "12px" }}>{nonStops?.station_name}</TimelineContent>
+                        </TimelineItem>
+                      )
+                  )}
                 </Timeline>
               </AccordionDetails>
-            </Accordion>
+            </Accordion>}
           </Box>
         ))}
     </div>

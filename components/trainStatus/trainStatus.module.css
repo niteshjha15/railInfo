@@ -1,3 +1,6 @@
 .timelineWrap>li::before{
   display: none !important;
 }
+.summeryContent > .MuiAccordionSummary-content{
+  flex-direction: column !important;
+}

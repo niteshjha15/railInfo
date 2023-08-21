@@ -31,7 +31,7 @@ function TrainNumber() {
     setDate(value);
   };
   return (
-    <div className="flex flex-column justify-center p-5">
+    <div className="p-5">
       <section
         style={{
           flexDirection: "column !important",
@@ -69,9 +69,9 @@ function TrainNumber() {
         </Button>
         <br />
         <section>
-          {trainData && trainData?.at_src ? (
+          {trainData && trainData?.at_src || trainData?.at_dstn ? (
             <AtSource trainData={trainData} />
-          ) : trainData && !trainData?.at_src ? (
+          ) : trainData && !trainData?.at_src && !trainData?.at_dstn ? (
             <TrainTimeLine trainData={trainData} />
           ) : null}
         </section>

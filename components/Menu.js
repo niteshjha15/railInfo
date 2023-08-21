@@ -29,18 +29,6 @@ function Menu() {
       target: "/searchStation",
     },
     {
-      name: "Search Train",
-      icon: (
-        <TrainOutlined
-          sx={{
-            fontSize: "5rem",
-            color:"#FF8126"
-          }}
-        />
-      ),
-      target: "/searchTrain",
-    },
-    {
       name: "Trains Between Stations",
       icon: (
         <CompareArrowsIcon
@@ -132,7 +120,7 @@ function Menu() {
           <Link href={menu.target}>
             <Card className="flex justify-center cursor-pointer">
               <CardContent>
-                <Typography variant="h5" className="text-3xl" component="div">
+                <Typography variant="h5" className="text-center text-3xl sm:text-xl">
                   {menu.name}
                 </Typography>
                 <Box className="flex justify-center text-5xl">{menu.icon}</Box>

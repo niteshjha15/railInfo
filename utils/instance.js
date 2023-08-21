@@ -2,7 +2,7 @@ import { default as axios } from "axios";
 
 export const reqInstance = axios.create({
   headers: {
-    "X-RapidAPI-Key": `bc548a37d4msh267e4118ee7bf5bp186cecjsnb3bf34f3388f`,
+    "X-RapidAPI-Key": `c5c623e29cmsh92fdb9df13296f2p17c2f5jsn9e96b9c23908`,
     "X-RapidAPI-Host": "irctc1.p.rapidapi.com",
   },
 });
